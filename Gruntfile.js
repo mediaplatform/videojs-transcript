@@ -16,16 +16,14 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       build: {
-        src: ['src/intro.js',
-              'src/polyfill.js',
+        src: ['src/polyfill.js',
               'src/options.js',
               'src/utils.js',
               'src/events.js',
               'src/scroller.js',
               'src/tracklist.js',
               'src/widget.js',
-              'src/main.js',
-              'src/outro.js'],
+              'src/plugin.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
@@ -69,6 +67,24 @@ module.exports = function(grunt) {
         src: ['build/**/*.js']
       }
     },
+
+    babel: {
+      options: {
+        sourceMap: false,
+        presets: ['es2015']
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: ['**/*.js'],
+          dest: 'dist/lib',
+          ext:'.js'
+        }]
+      }
+    },
+
+
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -85,6 +101,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -96,8 +113,5 @@ module.exports = function(grunt) {
                      ['clean',
                       //'jshint:src',
                       'concat',
-                      'jshint:build',
-                      'jshint:test',
-                      'qunit',
-                      'uglify']);
+                      'babel']);
 };

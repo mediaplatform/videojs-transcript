@@ -1,9 +1,5 @@
-/*! videojs-transcript - v0.8.0 - 2016-02-21
+/*! videojs-transcript - v0.8.0 - 2016-10-27
 * Copyright (c) 2016 Matthew Walsh; Licensed MIT */
-(function (window, videojs) {
-  'use strict';
-
-
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // MIT license
 // https://gist.github.com/paulirish/1579671
@@ -467,7 +463,9 @@ var widget = function (plugin) {
 
 }(my);
 
-var transcript = function (options) {
+import videojs from 'video.js';
+
+const transcript = function (options) {
   my.player = this;
   my.validTracks = trackList.get();
   my.currentTrack = trackList.active(my.validTracks);
@@ -498,5 +496,3 @@ var transcript = function (options) {
   };
 };
 videojs.plugin('transcript', transcript);
-
-}(window, videojs));
