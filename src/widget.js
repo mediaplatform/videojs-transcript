@@ -1,3 +1,7 @@
+import {my} from './options.js';
+import utils from './utils.js';
+import scroller from './scroller.js';
+import eventEmitter from './events.js';
 /*
  *  Create and Manipulate DOM Widgets
  */
@@ -144,3 +148,5 @@ var widget = function (plugin) {
   };
 
 }(my);
+
+export default widget;

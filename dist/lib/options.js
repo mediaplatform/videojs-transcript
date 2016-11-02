@@ -1,5 +1,8 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /*
  *  Shared Setup
  */
@@ -19,3 +22,5 @@ var defaults = {
   followPlayerTrack: true,
   stopScrollWhenInUse: true
 };
+
+exports.default = { my: my, defaults: defaults };

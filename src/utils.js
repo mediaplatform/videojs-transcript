@@ -1,3 +1,4 @@
+import {my} from './options.js';
 /*
  *  Utils
  */
@@ -41,3 +42,5 @@ var utils = (function (plugin) {
     }
   };
 }(my));
+
+export default utils;

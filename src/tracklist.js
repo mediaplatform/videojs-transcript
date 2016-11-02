@@ -1,3 +1,5 @@
+import {my} from './options.js';
+
 /*
  *  Tracklist Helper
  */
@@ -32,3 +34,5 @@ var trackList = function (plugin) {
     },
   };
 }(my);
+
+export default trackList;

@@ -1,4 +1,4 @@
-/*! videojs-transcript - v0.8.0 - 2016-10-27
+/*! videojs-transcript - v0.8.0 - 2016-10-31
 * Copyright (c) 2016 Matthew Walsh; Licensed MIT */
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // MIT license
@@ -81,13 +81,13 @@ if (!Array.prototype.forEach) {
 
 
 // Global settings
-var my = {};
+let my = {};
 my.settings = {};
 my.prefix = 'transcript';
 my.player = this;
 
 // Defaults
-var defaults = {
+let defaults = {
   autoscroll: true,
   clickArea: 'text',
   showTitle: true,
@@ -95,6 +95,8 @@ var defaults = {
   followPlayerTrack: true,
   stopScrollWhenInUse: true,
 };
+
+export default {my, defaults};
 
 /*global my*/
 var utils = (function (plugin) {
@@ -464,6 +466,7 @@ var widget = function (plugin) {
 }(my);
 
 import videojs from 'video.js';
+//import './options.js';
 
 const transcript = function (options) {
   my.player = this;

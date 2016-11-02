@@ -6,6 +6,8 @@ var _video2 = _interopRequireDefault(_video);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//import './options.js';
+
 var transcript = function transcript(options) {
   my.player = this;
   my.validTracks = trackList.get();

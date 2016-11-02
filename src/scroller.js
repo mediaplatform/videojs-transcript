@@ -1,3 +1,4 @@
+import {my} from './options.js';
 /*
  *  Scroller object to handle scrolling.
  */
@@ -133,4 +134,6 @@ var scrollerProto = function(plugin) {
 var scroller = function(element) {
   return Object.create(scrollerProto).init(element);
 };
+
+export default scroller;
 
