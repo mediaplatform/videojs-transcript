@@ -77,7 +77,13 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'src',
-          src: ['**/*.js'],
+          src: ['**/options.js',
+                '**/utils.js',
+                '**/events.js',
+                '**/scroller.js',
+                '**/tracklist.js',
+                '**/widget.js',
+                '**/plugin.js'],
           dest: 'dist/lib',
           ext:'.js'
         }]

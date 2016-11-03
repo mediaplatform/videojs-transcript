@@ -1,4 +1,4 @@
-/*! videojs-transcript - v0.8.0 - 2016-10-31
+/*! videojs-transcript - v0.8.0 - 2016-11-03
 * Copyright (c) 2016 Matthew Walsh; Licensed MIT */
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // MIT license
@@ -76,7 +76,8 @@ if (!Array.prototype.forEach) {
 
 // classList polyfill
 /*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js*/
-;if("document" in self&&!("classList" in document.createElement("_"))){(function(j){"use strict";if(!("Element" in j)){return}var a="classList",f="prototype",m=j.Element[f],b=Object,k=String[f].trim||function(){return this.replace(/^\s+|\s+$/g,"")},c=Array[f].indexOf||function(q){var p=0,o=this.length;for(;p<o;p++){if(p in this&&this[p]===q){return p}}return -1},n=function(o,p){this.name=o;this.code=DOMException[o];this.message=p},g=function(p,o){if(o===""){throw new n("SYNTAX_ERR","An invalid or illegal string was specified")}if(/\s/.test(o)){throw new n("INVALID_CHARACTER_ERR","String contains an invalid character")}return c.call(p,o)},d=function(s){var r=k.call(s.getAttribute("class")||""),q=r?r.split(/\s+/):[],p=0,o=q.length;for(;p<o;p++){this.push(q[p])}this._updateClassName=function(){s.setAttribute("class",this.toString())}},e=d[f]=[],i=function(){return new d(this)};n[f]=Error[f];e.item=function(o){return this[o]||null};e.contains=function(o){o+="";return g(this,o)!==-1};e.add=function(){var s=arguments,r=0,p=s.length,q,o=false;do{q=s[r]+"";if(g(this,q)===-1){this.push(q);o=true}}while(++r<p);if(o){this._updateClassName()}};e.remove=function(){var t=arguments,s=0,p=t.length,r,o=false;do{r=t[s]+"";var q=g(this,r);if(q!==-1){this.splice(q,1);o=true}}while(++s<p);if(o){this._updateClassName()}};e.toggle=function(p,q){p+="";var o=this.contains(p),r=o?q!==true&&"remove":q!==false&&"add";if(r){this[r](p)}return !o};e.toString=function(){return this.join(" ")};if(b.defineProperty){var l={get:i,enumerable:true,configurable:true};try{b.defineProperty(m,a,l)}catch(h){if(h.number===-2146823252){l.enumerable=false;b.defineProperty(m,a,l)}}}else{if(b[f].__defineGetter__){m.__defineGetter__(a,i)}}}(self))};
+if("document" in self&&!("classList" in document.createElement("_"))){(function(j){"use strict";if(!("Element" in j)){return}var a="classList",f="prototype",m=j.Element[f],b=Object,k=String[f].trim||function(){return this.replace(/^\s+|\s+$/g,"")},c=Array[f].indexOf||function(q){var p=0,o=this.length;for(;p<o;p++){if(p in this&&this[p]===q){return p}}return -1},n=function(o,p){this.name=o;this.code=DOMException[o];this.message=p},g=function(p,o){if(o===""){throw new n("SYNTAX_ERR","An invalid or illegal string was specified")}if(/\s/.test(o)){throw new n("INVALID_CHARACTER_ERR","String contains an invalid character")}return c.call(p,o)},d=function(s){var r=k.call(s.getAttribute("class")||""),q=r?r.split(/\s+/):[],p=0,o=q.length;for(;p<o;p++){this.push(q[p])}this._updateClassName=function(){s.setAttribute("class",this.toString())}},e=d[f]=[],i=function(){return new d(this)};n[f]=Error[f];e.item=function(o){return this[o]||null};e.contains=function(o){o+="";return g(this,o)!==-1};e.add=function(){var s=arguments,r=0,p=s.length,q,o=false;do{q=s[r]+"";if(g(this,q)===-1){this.push(q);o=true}}while(++r<p);if(o){this._updateClassName()}};e.remove=function(){var t=arguments,s=0,p=t.length,r,o=false;do{r=t[s]+"";var q=g(this,r);if(q!==-1){this.splice(q,1);o=true}}while(++s<p);if(o){this._updateClassName()}};e.toggle=function(p,q){p+="";var o=this.contains(p),r=o?q!==true&&"remove":q!==false&&"add";if(r){this[r](p)}return !o};e.toString=function(){return this.join(" ")};if(b.defineProperty){var l={get:i,enumerable:true,configurable:true};try{b.defineProperty(m,a,l)}catch(h){if(h.number===-2146823252){l.enumerable=false;b.defineProperty(m,a,l)}}}else{if(b[f].__defineGetter__){m.__defineGetter__(a,i)}}}(self))};
+export default;
 
 
 
@@ -96,7 +97,12 @@ let defaults = {
   stopScrollWhenInUse: true,
 };
 
-export default {my, defaults};
+export {my, defaults};
+
+import {my} from './options.js';
+/*
+ *  Utils
+ */
 
 /*global my*/
 var utils = (function (plugin) {
@@ -138,6 +144,8 @@ var utils = (function (plugin) {
   };
 }(my));
 
+export default utils;
+
 var eventEmitter = {
   handlers_: [],
   on: function on (object, eventtype, callback) {
@@ -157,6 +165,12 @@ var eventEmitter = {
   }
 };
 
+export default eventEmitter;
+
+import {my} from './options.js';
+/*
+ *  Scroller object to handle scrolling.
+ */
 var scrollerProto = function(plugin) {
 
   var initHandlers = function (el) {
@@ -290,6 +304,14 @@ var scroller = function(element) {
   return Object.create(scrollerProto).init(element);
 };
 
+export default scroller;
+
+
+import {my} from './options.js';
+
+/*
+ *  Tracklist Helper
+ */
 
 /*global my*/
 var trackList = function (plugin) {
@@ -321,6 +343,16 @@ var trackList = function (plugin) {
     },
   };
 }(my);
+
+export default trackList;
+
+import {my} from './options.js';
+import utils from './utils.js';
+import scroller from './scroller.js';
+import eventEmitter from './events.js';
+/*
+ *  Create and Manipulate DOM Widgets
+ */
 
 /*globals utils, eventEmitter, my, scrollable*/
 
@@ -465,37 +497,41 @@ var widget = function (plugin) {
 
 }(my);
 
+export default widget;
+
 import videojs from 'video.js';
-//import './options.js';
+import {my, defaults} from './options.js';
+import trackList from './tracklist.js';
+import widget from './widget.js';
 
 const transcript = function (options) {
-  my.player = this;
-  my.validTracks = trackList.get();
-  my.currentTrack = trackList.active(my.validTracks);
-  my.settings = videojs.mergeOptions(defaults, options);
-  my.widget = widget.create();
-  var timeUpdate = function () {
-    my.widget.setCue(my.player.currentTime());
-  };
-  var updateTrack = function () {
+  this.ready(() => {
+    my.player = this;
+    my.validTracks = trackList.get();
     my.currentTrack = trackList.active(my.validTracks);
-    my.widget.setTrack(my.currentTrack);
-  };
-  if (my.validTracks.length > 0) {
-    updateTrack();
-    my.player.on('timeupdate', timeUpdate);
-    if (my.settings.followPlayerTrack) {
-      my.player.on('captionstrackchange', updateTrack);
-      my.player.on('subtitlestrackchange', updateTrack);
+    my.settings = videojs.mergeOptions(defaults, options);
+    my.widget = widget.create();
+    var timeUpdate = function () {
+      my.widget.setCue(my.player.currentTime());
+    };
+    var updateTrack = function () {
+      my.currentTrack = trackList.active(my.validTracks);
+      my.widget.setTrack(my.currentTrack);
+    };
+    if (my.validTracks.length > 0) {
+      updateTrack();
+      my.player.on('timeupdate', timeUpdate);
+      if (my.settings.followPlayerTrack) {
+        my.player.on('captionstrackchange', updateTrack);
+        my.player.on('subtitlestrackchange', updateTrack);
+      }
+    } else {
+      throw new Error('videojs-transcript: No tracks found!');
     }
-  } else {
-    throw new Error('videojs-transcript: No tracks found!');
-  }
-  return {
-    el: function () {
-      return my.widget.el();
-    },
-    setTrack: my.widget.setTrack
-  };
+
+    let transcriptContainer = options.el;
+    transcriptContainer.appendChild(my.widget.el());
+
+  });
 };
 videojs.plugin('transcript', transcript);

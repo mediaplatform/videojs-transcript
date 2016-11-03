@@ -1,5 +1,11 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _options = require('./options.js');
+
 /*
  *  Tracklist Helper
  */
@@ -11,9 +17,9 @@ var trackList = function (plugin) {
     get: function get() {
       var validTracks = [];
       var i, track;
-      my.tracks = my.player.textTracks();
-      for (i = 0; i < my.tracks.length; i++) {
-        track = my.tracks[i];
+      _options.my.tracks = _options.my.player.textTracks();
+      for (i = 0; i < _options.my.tracks.length; i++) {
+        track = _options.my.tracks[i];
         if (track.kind === 'captions' || track.kind === 'subtitles') {
           validTracks.push(track);
         }
@@ -22,8 +28,8 @@ var trackList = function (plugin) {
     },
     active: function active(tracks) {
       var i, track;
-      for (i = 0; i < my.tracks.length; i++) {
-        track = my.tracks[i];
+      for (i = 0; i < _options.my.tracks.length; i++) {
+        track = _options.my.tracks[i];
         if (track.mode === 'showing') {
           activeTrack = track;
           return track;
@@ -33,4 +39,6 @@ var trackList = function (plugin) {
       return activeTrack || tracks[0];
     }
   };
-}(my);
+}(_options.my);
+
+exports.default = trackList;

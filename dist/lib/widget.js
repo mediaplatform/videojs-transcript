@@ -1,6 +1,26 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _options = require('./options.js');
+
+var _utils = require('./utils.js');
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _scroller = require('./scroller.js');
+
+var _scroller2 = _interopRequireDefault(_scroller);
+
+var _events = require('./events.js');
+
+var _events2 = _interopRequireDefault(_events);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  *  Create and Manipulate DOM Widgets
@@ -13,18 +33,18 @@ var widget = function (plugin) {
   my.element = {};
   my.body = {};
   var on = function on(event, callback) {
-    eventEmitter.on(this, event, callback);
+    _events2.default.on(this, event, callback);
   };
   var trigger = function trigger(event) {
-    eventEmitter.trigger(this, event);
+    _events2.default.trigger(this, event);
   };
   var createTitle = function createTitle() {
-    var header = utils.createEl('header', '-header');
-    header.textContent = utils.localize('Transcript');
+    var header = _utils2.default.createEl('header', '-header');
+    header.textContent = _utils2.default.localize('Transcript');
     return header;
   };
   var createSelector = function createSelector() {
-    var selector = utils.createEl('select', '-selector');
+    var selector = _utils2.default.createEl('select', '-selector');
     plugin.validTracks.forEach(function (track, i) {
       var option = document.createElement('option');
       option.value = i;
@@ -49,11 +69,11 @@ var widget = function (plugin) {
     }
   };
   var createLine = function createLine(cue) {
-    var line = utils.createEl('div', '-line');
-    var timestamp = utils.createEl('span', '-timestamp');
-    var text = utils.createEl('span', '-text');
+    var line = _utils2.default.createEl('div', '-line');
+    var timestamp = _utils2.default.createEl('span', '-timestamp');
+    var text = _utils2.default.createEl('span', '-text');
     line.setAttribute('data-begin', cue.startTime);
-    timestamp.textContent = utils.secondsToTime(cue.startTime);
+    timestamp.textContent = _utils2.default.secondsToTime(cue.startTime);
     text.innerHTML = cue.text;
     line.appendChild(timestamp);
     line.appendChild(text);
@@ -63,7 +83,7 @@ var widget = function (plugin) {
     if ((typeof track === 'undefined' ? 'undefined' : _typeof(track)) !== 'object') {
       track = plugin.player.textTracks()[track];
     }
-    var body = utils.createEl('div', '-body');
+    var body = _utils2.default.createEl('div', '-body');
     var line, i;
     var fragment = document.createDocumentFragment();
     // activeCues returns null when the track isn't loaded (for now?)
@@ -85,7 +105,7 @@ var widget = function (plugin) {
       body.innerHTML = '';
       body.appendChild(fragment);
       body.setAttribute('lang', track.language);
-      body.scroll = scroller(body);
+      body.scroll = (0, _scroller2.default)(body);
       body.addEventListener('click', clickToSeekHandler);
       my.element.replaceChild(body, my.body);
       my.body = body;
@@ -103,7 +123,7 @@ var widget = function (plugin) {
       var selector = createSelector();
       el.appendChild(selector);
     }
-    my.body = utils.createEl('div', '-body');
+    my.body = _utils2.default.createEl('div', '-body');
     el.appendChild(my.body);
     setTrack(plugin.currentTrack);
     return this;
@@ -146,4 +166,6 @@ var widget = function (plugin) {
     on: on,
     trigger: trigger
   };
-}(my);
+}(_options.my);
+
+exports.default = widget;

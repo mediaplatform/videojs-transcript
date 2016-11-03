@@ -27,12 +27,10 @@ const transcript = function (options) {
     } else {
       throw new Error('videojs-transcript: No tracks found!');
     }
-    return {
-      el: function () {
-        return my.widget.el();
-      },
-      setTrack: my.widget.setTrack
-    };
+
+    let transcriptContainer = options.el;
+    transcriptContainer.appendChild(my.widget.el());
+
   });
 };
 videojs.plugin('transcript', transcript);

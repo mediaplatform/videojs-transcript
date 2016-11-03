@@ -1,5 +1,8 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /*
  *  Basic event handling.
  */
@@ -21,3 +24,5 @@ var eventEmitter = {
     });
   }
 };
+
+exports.default = eventEmitter;

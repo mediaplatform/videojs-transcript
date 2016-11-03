@@ -1,5 +1,11 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _options = require('./options.js');
+
 /*
  *  Scroller object to handle scrolling.
  */
@@ -130,8 +136,10 @@ var scrollerProto = function (plugin) {
     canScroll: canScroll,
     inUse: inUse
   };
-}(my);
+}(_options.my);
 
 var scroller = function scroller(element) {
   return Object.create(scrollerProto).init(element);
 };
+
+exports.default = scroller;

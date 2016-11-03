@@ -23,4 +23,5 @@ var defaults = {
   stopScrollWhenInUse: true
 };
 
-exports.default = { my: my, defaults: defaults };
+exports.my = my;
+exports.defaults = defaults;
