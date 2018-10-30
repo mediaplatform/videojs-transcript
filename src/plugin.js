@@ -33,4 +33,4 @@ const transcript = function (options) {
 
   });
 };
-videojs.plugin('transcript', transcript);
+videojs.registerPlugin('transcript', transcript);
