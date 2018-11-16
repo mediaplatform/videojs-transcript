@@ -1,4 +1,4 @@
-/*! videojs-transcript - v0.8.0 - 2018-10-30
+/*! videojs-transcript - v0.8.0 - 2018-11-16
 * Copyright (c) 2018 Matthew Walsh; Licensed MIT */
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // MIT license
@@ -376,7 +376,7 @@ var widget = function (plugin) {
       plugin.validTracks.forEach(function (track, i) {
       var option = document.createElement('option');
       option.value = i;
-      option.textContent = track.label + ' (' + track.language + ')';
+      option.textContent = track.label;
       selector.appendChild(option);
     });
     selector.addEventListener('change', function (e) {
@@ -415,7 +415,7 @@ var widget = function (plugin) {
     var line, i;
     var fragment = document.createDocumentFragment();
     // activeCues returns null when the track isn't loaded (for now?)
-    if (!track.activeCues) {
+    if (!track.activeCues || (track.cues && track.cues.length == 0)) {
       // If cues aren't loaded, set mode to hidden, wait, and try again.
       // But don't hide an active track. In that case, just wait and try again.
       if (track.mode !== 'showing') {
