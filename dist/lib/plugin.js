@@ -47,4 +47,8 @@ var transcript = function transcript(options) {
     transcriptContainer.appendChild(_options.my.widget.el());
   });
 };
-_video2.default.registerPlugin('transcript', transcript);
+if (_video2.default.registerPlugin) {
+  _video2.default.registerPlugin('transcript', transcript);
+} else {
+  _video2.default.plugin('transcript', transcript);
+}
