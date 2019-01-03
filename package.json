@@ -11,6 +11,7 @@
     "video",
     "player"
   ],
+  "dependencies": {},
   "devDependencies": {
     "babel-preset-es2015": "^6.14.0",
     "babelify": "^6.0.1",
