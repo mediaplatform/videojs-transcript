@@ -33,4 +33,10 @@ const transcript = function (options) {
 
   });
 };
-videojs.registerPlugin('transcript', transcript);
+if (videojs.registerPlugin) {
+    videojs.registerPlugin('transcript', transcript);
+}
+else {
+  videojs.plugin('transcript', transcript);
+}
+
