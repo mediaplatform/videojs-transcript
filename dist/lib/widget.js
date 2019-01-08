@@ -150,7 +150,7 @@ var widget = function (plugin) {
       headerEl.appendChild(downloadBtn);
     }
 
-    my.body = _utils2.default.createEl('div', '-body');
+    my.body = _utils3.default.createEl('div', '-body');
     el.appendChild(headerEl);
     el.appendChild(my.body);
     setTrack(plugin.currentTrack);
