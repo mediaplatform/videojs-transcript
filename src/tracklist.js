@@ -15,6 +15,10 @@ var trackList = function (plugin) {
       for (i = 0; i < my.tracks.length; i++) {
         track = my.tracks[i];
         if (track.kind === 'captions' || track.kind === 'subtitles') {
+          if (my.player.options_.transcript.downloads) {
+              track.download = my.player.options_.transcript.downloads[track.label]
+              console.log(track.download);
+          }
           validTracks.push(track);
         }
       }

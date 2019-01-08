@@ -2,11 +2,15 @@
   width: 600px;
   margin: auto;
   font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  padding: 15px;
 }
 
 .transcript-body {
-  height: 200px;
   overflow-y: scroll;
+  height: 247px;
+  clear: both;
 }
 
 .transcript-line {
@@ -17,15 +21,13 @@
 }
 
 .transcript-timestamp {
-  position: absolute;
-  display: inline-block;
-  color: #333;
-  width: 50px;
+  display: none;
+  visibility: hidden;
 }
 
 .transcript-text {
   display: block;
-  margin-left: 50px;
+  min-height: 20px;
 }
 
 .transcript-line:hover {
@@ -34,4 +36,22 @@
 
 .transcript-line.is-active {
   background-color: #e2fbfb;
+}
+.transcript-header-container {
+  float: right;
+}
+.transcript-download-btn {
+  display:inline-block;
+  background: url('download-icon.png');
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  width: 18px;
+  height: 18px;
+  margin: 0 10px 0 15px;
+  text-indent: 1000px;
+  cursor: pointer;
+}
+
+.transcript-header {
+  display: none;
 }

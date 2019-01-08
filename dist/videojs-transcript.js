@@ -1,4 +1,4 @@
-/*! videojs-transcript - v0.8.0 - 2019-01-03
+/*! videojs-transcript - v0.8.0 - 2019-01-08
 * Copyright (c) 2019 Matthew Walsh; Licensed MIT */
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // MIT license
@@ -324,6 +324,10 @@ var trackList = function (plugin) {
       for (i = 0; i < my.tracks.length; i++) {
         track = my.tracks[i];
         if (track.kind === 'captions' || track.kind === 'subtitles') {
+          if (my.player.options_.transcript.downloads) {
+              track.download = my.player.options_.transcript.downloads[track.label]
+              console.log(track.download);
+          }
           validTracks.push(track);
         }
       }
@@ -371,19 +375,42 @@ var widget = function (plugin) {
     header.textContent = utils.localize('Transcript');
     return header;
   };
-  var createSelector = function (){
-    var selector = utils.createEl('select', '-selector');
-      plugin.validTracks.forEach(function (track, i) {
+  var createSelector = function createSelector(downloadBtn) {
+    var selector = _utils2.default.createEl('select', '-selector');
+    plugin.validTracks.forEach(function (track, i) {
       var option = document.createElement('option');
       option.value = i;
+      if (i == 0 && track.download != "") {
+        downloadBtn.style.display = "inline-block";
+      }
+      option.setAttribute('data-download', track.download);
       option.textContent = track.label;
       selector.appendChild(option);
     });
     selector.addEventListener('change', function (e) {
+      var selected = document.querySelector('#' + plugin.prefix + '-' + plugin.player.id() + ' option:checked');
+      if (!selected.dataset.download || selected.dataset.download == undefined || selected.dataset.download == "undefined") {
+        document.querySelector('.transcript-download-btn').style.display = "none";
+      }
+      else {
+        document.querySelector('.transcript-download-btn').style.display = "inline-block";
+      }
       setTrack(document.querySelector('#' + plugin.prefix + '-' + plugin.player.id() + ' option:checked').value);
       trigger('trackchanged');
     });
     return selector;
+  };
+  var createDownloadTrackButton = function createDownloadTrackButton() {
+    var downloadBtn = _utils2.default.createEl('a', '-download-btn');
+    var t = document.createTextNode("download");
+    downloadBtn.setAttribute('target', "_blank");
+    downloadBtn.style.display = "none";
+    downloadBtn.appendChild(t);
+    downloadBtn.addEventListener('click', function (e) {
+      this.setAttribute('download', document.querySelector('.transcript-selector option:checked').innerHTML);
+      this.setAttribute('href', document.querySelector('.transcript-selector option:checked').dataset.download);
+    });
+    return downloadBtn;
   };
   var clickToSeekHandler = function (event) {
     var clickedClasses = event.target.classList;
@@ -440,19 +467,25 @@ var widget = function (plugin) {
     }
 
   };
-  var create = function () {
+  var create = function create() {
     var el = document.createElement('div');
+    var headerEl = _utils2.default.createEl('div', '-header-container');
     my.element = el;
     el.setAttribute('id', plugin.prefix + '-' + plugin.player.id());
     if (plugin.settings.showTitle) {
       var title = createTitle();
-      el.appendChild(title);
+      headerEl.appendChild(title);
     }
+    var downloadBtn = createDownloadTrackButton();
+
     if (plugin.settings.showTrackSelector) {
-      var selector = createSelector();
-      el.appendChild(selector);
+      var selector = createSelector(downloadBtn);
+      headerEl.appendChild(selector);
+      headerEl.appendChild(downloadBtn);
     }
-    my.body = utils.createEl('div', '-body');
+
+    my.body = _utils2.default.createEl('div', '-body');
+    el.appendChild(headerEl);
     el.appendChild(my.body);
     setTrack(plugin.currentTrack);
     return this;
@@ -511,6 +544,7 @@ const transcript = function (options) {
     my.currentTrack = trackList.active(my.validTracks);
     my.settings = videojs.mergeOptions(defaults, options);
     my.widget = widget.create();
+
     var timeUpdate = function () {
       my.widget.setCue(my.player.currentTime());
     };

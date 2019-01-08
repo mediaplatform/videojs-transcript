@@ -25,6 +25,7 @@ var transcript = function transcript(options) {
     _options.my.currentTrack = _tracklist2.default.active(_options.my.validTracks);
     _options.my.settings = _video2.default.mergeOptions(_options.defaults, options);
     _options.my.widget = _widget2.default.create();
+
     var timeUpdate = function timeUpdate() {
       _options.my.widget.setCue(_options.my.player.currentTime());
     };
