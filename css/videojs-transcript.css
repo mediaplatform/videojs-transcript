@@ -15,7 +15,7 @@
 
 .transcript-line {
   position: relative;
-  padding: 5px;
+  padding: 2px;
   cursor: pointer;
   line-height: 1.3;
 }
