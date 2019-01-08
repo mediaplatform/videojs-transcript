@@ -135,7 +135,7 @@ var widget = function (plugin) {
   };
   var create = function create() {
     var el = document.createElement('div');
-    var headerEl = _utils2.default.createEl('div', '-header-container');
+    var headerEl = _utils3.default.createEl('div', '-header-container');
     my.element = el;
     el.setAttribute('id', plugin.prefix + '-' + plugin.player.id());
     if (plugin.settings.showTitle) {
