@@ -379,7 +379,7 @@ var widget = function (plugin) {
     plugin.validTracks.forEach(function (track, i) {
       var option = document.createElement('option');
       option.value = i;
-      if (i == 0 && track.download != "") {
+      if (i == 0 && track.download != undefined && track.download != "") {
         downloadBtn.style.display = "inline-block";
       }
       option.setAttribute('data-download', track.download);
