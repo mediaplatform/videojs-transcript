@@ -23,7 +23,6 @@ var trackList = function (plugin) {
         if (track.kind === 'captions' || track.kind === 'subtitles') {
           if (_options.my.player.options_.transcript.downloads) {
             track.download = _options.my.player.options_.transcript.downloads[track.label];
-            console.log(track.download);
           }
           validTracks.push(track);
         }
