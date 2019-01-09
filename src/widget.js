@@ -24,7 +24,7 @@ var widget = function (plugin) {
     return header;
   };
   var createSelector = function createSelector(downloadBtn) {
-    var selector = _utils2.default.createEl('select', '-selector');
+    var selector = utils.createEl('select', '-selector');
     plugin.validTracks.forEach(function (track, i) {
       var option = document.createElement('option');
       option.value = i;
@@ -49,7 +49,7 @@ var widget = function (plugin) {
     return selector;
   };
   var createDownloadTrackButton = function createDownloadTrackButton() {
-    var downloadBtn = _utils2.default.createEl('a', '-download-btn');
+    var downloadBtn = utils.createEl('a', '-download-btn');
     var t = document.createTextNode("download");
     downloadBtn.setAttribute('target', "_blank");
     downloadBtn.style.display = "none";

@@ -10,7 +10,7 @@ var _options = require('./options.js');
 
 var _utils = require('./utils.js');
 
-var _utils3 = _interopRequireDefault(_utils);
+var _utils2 = _interopRequireDefault(_utils);
 
 var _scroller = require('./scroller.js');
 
@@ -39,8 +39,8 @@ var widget = function (plugin) {
     _events2.default.trigger(this, event);
   };
   var createTitle = function createTitle() {
-    var header = _utils3.default.createEl('header', '-header');
-    header.textContent = _utils3.default.localize('Transcript');
+    var header = _utils2.default.createEl('header', '-header');
+    header.textContent = _utils2.default.localize('Transcript');
     return header;
   };
   var createSelector = function createSelector(downloadBtn) {
@@ -91,11 +91,11 @@ var widget = function (plugin) {
     }
   };
   var createLine = function createLine(cue) {
-    var line = _utils3.default.createEl('div', '-line');
-    var timestamp = _utils3.default.createEl('span', '-timestamp');
-    var text = _utils3.default.createEl('span', '-text');
+    var line = _utils2.default.createEl('div', '-line');
+    var timestamp = _utils2.default.createEl('span', '-timestamp');
+    var text = _utils2.default.createEl('span', '-text');
     line.setAttribute('data-begin', cue.startTime);
-    timestamp.textContent = _utils3.default.secondsToTime(cue.startTime);
+    timestamp.textContent = _utils2.default.secondsToTime(cue.startTime);
     text.innerHTML = cue.text;
     line.appendChild(timestamp);
     line.appendChild(text);
@@ -105,7 +105,7 @@ var widget = function (plugin) {
     if ((typeof track === 'undefined' ? 'undefined' : _typeof(track)) !== 'object') {
       track = plugin.player.textTracks()[track];
     }
-    var body = _utils3.default.createEl('div', '-body');
+    var body = _utils2.default.createEl('div', '-body');
     var line, i;
     var fragment = document.createDocumentFragment();
     // activeCues returns null when the track isn't loaded (for now?)
@@ -135,7 +135,7 @@ var widget = function (plugin) {
   };
   var create = function create() {
     var el = document.createElement('div');
-    var headerEl = _utils3.default.createEl('div', '-header-container');
+    var headerEl = _utils2.default.createEl('div', '-header-container');
     my.element = el;
     el.setAttribute('id', plugin.prefix + '-' + plugin.player.id());
     if (plugin.settings.showTitle) {
@@ -150,7 +150,7 @@ var widget = function (plugin) {
       headerEl.appendChild(downloadBtn);
     }
 
-    my.body = _utils3.default.createEl('div', '-body');
+    my.body = _utils2.default.createEl('div', '-body');
     el.appendChild(headerEl);
     el.appendChild(my.body);
     setTrack(plugin.currentTrack);
