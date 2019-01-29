@@ -1,5 +1,5 @@
-/*! videojs-transcript - v0.8.0 - 2018-11-16
-* Copyright (c) 2018 Matthew Walsh; Licensed MIT */
+/*! videojs-transcript - v0.8.0 - 2019-01-29
+* Copyright (c) 2019 Matthew Walsh; Licensed MIT */
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // MIT license
 // https://gist.github.com/paulirish/1579671
