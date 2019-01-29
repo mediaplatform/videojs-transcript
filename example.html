@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Video.js Transcript</title>
 
-  <link href="//vjs.zencdn.net/5.6.0/video-js.css" rel="stylesheet">
+  <link href="//vjs.zencdn.net/5.16.0/video-js.css" rel="stylesheet">
   <link href="css/videojs-transcript.css" title="Example 1" rel="stylesheet">
   <link href="css/videojs-transcript2.css" title="Example 2" rel="alternate stylesheet">
   <link href="css/videojs-transcript3.css" title="Example 3" rel="alternate stylesheet">
@@ -23,7 +23,7 @@
       margin: 40px auto;
     }
   </style>
-  <script src="//vjs.zencdn.net/5.6.0/video.js"></script>
+  <script src="//vjs.zencdn.net/5.16.0/video.js"></script>
   <script src="dist/videojs-transcript.js"></script>
   </head>
   <body>
@@ -42,8 +42,7 @@
       <p>
         Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
       </p>
-      <source src="http://www.openbeelden.nl/files/92/104101.ed_hd.mp4" type="video/mp4">
-      <source src="http://www.openbeelden.nl/files/92/104105.ed_hd.webm" type="video/webm">
+      <source src="https://ptvideofsdev.s3.amazonaws.com/victoria.primetime.mediaplatformdev.com/acb27c5c-3750-4871-af23-cc352827e6da/video-1538675326322.mp4" type="video/mp4">
       <track kind="captions" src="captions/captions.en.vtt" srclang="en" label="English" default>
       <track kind="captions" src="captions/captions.sv.vtt" srclang="sv" label="Swedish">
       <track kind="captions" src="captions/captions.ru.vtt" srclang="ru" label="Russian">
@@ -53,15 +52,20 @@
     <div id="transcript"></div>
   </div>
   <script>
-      var video = videojs('video').ready(function(){
+    var video = videojs('video').ready(function(){
+      // Set up any options.
+      var options = {
+        showTitle: false,
+        showTrackSelector: false,
+      };
 
-          // fire up the plugin
-          var transcript = this.transcript();
+      // Initialize the plugin.
+      var transcript = this.transcript(options);
 
-          // attach the widget to the page
-          var transcriptContainer = document.querySelector('#transcript');
-          transcriptContainer.appendChild(transcript.el());
-      });
+      // Then attach the widget to the page.
+      var transcriptContainer = document.querySelector('#transcript');
+      transcriptContainer.appendChild(transcript.el());
+    });
   </script>
 </body>
 </html>

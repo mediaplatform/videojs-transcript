@@ -10,6 +10,7 @@ const transcript = function (options) {
     my.currentTrack = trackList.active(my.validTracks);
     my.settings = videojs.mergeOptions(defaults, options);
     my.widget = widget.create();
+
     var timeUpdate = function () {
       my.widget.setCue(my.player.currentTime());
     };
@@ -33,4 +34,10 @@ const transcript = function (options) {
 
   });
 };
-videojs.registerPlugin('transcript', transcript);
+if (videojs.registerPlugin) {
+    videojs.registerPlugin('transcript', transcript);
+}
+else {
+  videojs.plugin('transcript', transcript);
+}
+

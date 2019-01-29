@@ -21,6 +21,9 @@ var trackList = function (plugin) {
       for (i = 0; i < _options.my.tracks.length; i++) {
         track = _options.my.tracks[i];
         if (track.kind === 'captions' || track.kind === 'subtitles') {
+          if (_options.my.player.options_.transcript.downloads) {
+            track.download = _options.my.player.options_.transcript.downloads[track.label];
+          }
           validTracks.push(track);
         }
       }

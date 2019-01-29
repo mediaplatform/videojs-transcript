@@ -29,4 +29,10 @@ var transcript = function (options) {
     setTrack: my.widget.setTrack
   };
 };
-videojs.registerPlugin('transcript', transcript);
+if (videojs.registerPlugin) {
+  videojs.registerPlugin('transcript', transcript);
+}
+else {
+  videojs.plugin('transcript', transcript);
+}
+
