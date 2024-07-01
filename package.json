@@ -26,6 +26,6 @@
     "qunitjs": "^1.12"
   },
   "peerDependencies": {
-    "video.js": "^7.5.0"
+    "video.js": "^8.11.7"
   }
 }
